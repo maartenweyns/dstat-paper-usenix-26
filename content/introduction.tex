@@ -1,0 +1,21 @@
+\section{Introduction}
+
+% With increasing power and complexity, Distributed Denial of Service (DDoS) attacks still remain a valid concern.
+% The constant cat-and-mouse game between DDoS mitigation systems and DDoS attack methods make these attacks more effective than ever before.
+
+Distributed Denial of Service (DDoS) attacks continue to pose significant threats to online services, despite advancements in mitigation techniques. The ongoing evolution of attack methods and the corresponding development of defense mechanisms create a dynamic landscape where both attackers and defenders are continually adapting their strategies. This cat-and-mouse game results in increasingly sophisticated DDoS attacks that can bypass traditional mitigation systems. Recent trends show that attackers are increasingly capable of reaching Terrabit-per-second (Tbps) levels of traffic \textbf{TODO: CITE}.
+
+Modern DDoS attacks often leverage large-scale botnets, which are networks of compromised devices that can be orchestrated to flood target systems with overwhelming traffic. It is not trivial to build and maintain such botnets to perform a DDoS attack. However, attackers can rent botnets from DDoS-for-Hire services, which provide easy access to powerful attack capabilities for a fee. These services lower the barrier to entry for launching DDoS attacks, making them accessible to a wider range of malicious actors. As a result, the frequency and scale of DDoS attacks have increased significantly in recent years \textbf{TODO: CITE}.
+
+Around this DDoS-for-Hire ecosystem, a market has emerged where many botnet operators offer their services to perform these DDoS-for-Hire attacks. These operators often compete on price, reliability, and the scale of attacks they can facilitate. From a user perspective, selecting a DDoS-for-Hire service can be challenging due to the lack of transparency, and the unknown firepower of the underlying botnet. Users may struggle to assess the effectiveness of different services, leading to uncertainty about the potential impact of their chosen DDoS attack which they will only discover after the payment has been made.
+
+To address this problem of lack of transparency, the underground economy has seen the emergence of DDoS testing services. These services allow users to identify the strength of a DDoS-for-Hire service before committing to a purchase, and are often shared in Telegram groups. These services typically offer a public dashboard where operators can showcase the extent of their DDoS capabilities by attacking what is essentially a trusted third party. This allows potential customers to evaluate the effectiveness of the DDoS-for-Hire service. These testing services are often referred to as ``Dstat'' panels after the Linux monitoring tool \texttt{dstat} \textbf{TODO: Cite}, which is commonly used to display real-time system resource usage statistics.
+
+In this paper, we present a comprehensive study of the Dstat ecosystem and the Telegram platform backing it. We systematically analyze the features and functionalities of Dstat panels, examining how they operate and where the machines come from that are being attacked. Our research aims to shed light on the inner workings of these services, providing insights into their role within the broader DDoS-for-Hire market. By understanding the dynamics of Dstat panels, we can better comprehend the challenges faced by defenders in mitigating DDoS attacks and the implications for cybersecurity as a whole.
+
+The contributions of this paper are as follows:
+\begin{itemize}
+    \item We provide a detailed analysis of the Dstat ecosystem, including the features and functionalities of Dstat panels.
+    \item We investigate the sources of the machines being attacked in Dstat panels, showing the infrastructure supporting these services.
+    \item We explore the role of Telegram in facilitating the Dstat ecosystem, showing the interactions between users and Dstat service providers.
+\end{itemize}

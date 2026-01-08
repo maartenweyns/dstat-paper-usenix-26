@@ -1,0 +1,23 @@
+\section{Background}
+
+In a \textbf{Distributed Denial of Service (DDoS) attack}, an attacker aims to exhaust resources on a vicitm system, making it unable to respond to legitimate users.
+To be able to perform such an attack, the attacker needs to send a lot of network traffic to the victim from different geographical locations around the world.
+There exist different ways to send traffic from many places around the world to a single victim.
+One of these options is to build a \textbf{botnet}: a network of compromised devices under the control of the attacker.
+When launching a DDoS attack, the attacker then instructs all the bots in the botnet to start sending traffic to the victim.
+
+Another option to achieve geographically distributed traffic is to \textbf{spoof} the source of the traffic.
+This fakes the source of the data, making it look like it's coming from many places around the world at the victim's side.
+While it is becoming more and more difficult to send spoofed traffic on the internet, DDoS attacks actively rely on this mechanism to be effective.
+
+Since the technical requirements to perform a successful DDoS attack are quite complex, markets exist where criminals posessing of these networks can sell DDoS attacks to anyone who wants to perform an attack.
+This \textbf{DDoS-for-Hire} market has grown significantly in the last years, and allows anyone to launch a big attack with the click of a button.
+
+Having a market where DDoS attacks are sold implies that there is competition between different service providers.
+Users want to know which service provider is capable of providing the strongest attacks for the lowest prices.
+However, to show the power of a given DDoS-for-Hire newtork, there needs to be a trused third party reporting the real-world power of a performed attack.
+
+For this reason, DDoS-for-Hire providers have built online platforms where DDoS attacks can be ``tested''.
+The website presents the user with an IP address and a port, and a graph on the page shows the observed traffic while the attack is happening.
+In the DDoS-for-Hire community, these testing endpoints are called ``dstats''.
+Many of these Dstat websites exist, each presenting a large set of available testing endpoints.
