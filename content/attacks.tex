@@ -1,9 +1,52 @@
 \section{Attacks on DStat}
+\label{sec:attacks}
 
+To understand the capabilities of DDoS-for-Hire services that use DStat services to showcase their power, we analyze the attacks that are performed on the DStat endpoints we monitor. To identify these attacks, we look for spikes in the reported bandwidth on the DStat services. We define an attack as any period where the reported bandwidth \textbf{TODO}. During our monitoring period from \textbf{TODO: Date} until \textbf{TODO: Date}, we observe a total of \textbf{TODO} attacks on the DStat endpoints we monitor. In this section, we analyze these attacks to understand their characteristics and the capabilities of the DDoS-for-Hire services that perform them.
+
+
+\subsection{Attack Frequency}
+To understand the frequency of attacks on the DStat endpoints, we analyze the number of attacks observed per day during our monitoring period. Figure~\textbf{TODO} shows a time series of the number of attacks observed.
+
+\color{red}CONTINUE HERE\color{black}
+
+
+\subsection{Attack Volume}
+\label{sec:attack_volume}
+To understand the volume of the attacks performed on the DStat endpoints, we analyze the peak bandwidth observed during each attack. Figure~\textbf{TODO} shows a CDF of the peak bandwidth observed during the attacks per category of DStat endpoints. We split these per endpoint category, as different categories have different uplink capacities, which influences the maximum attack size that can be observed. 
+
+\color{red}CONTINUE HERE\color{black}
+
+
+\subsection{Attack Characteristics}
+To further understand the nature of the attacks performed on the DStat endpoints, we analyze various characteristics of the attacks, including their duration, protocols used, and whether they employ IP spoofing. Figure~\textbf{TODO} shows the distribution of attack durations observed during our monitoring period. We observe that most attacks last for \textbf{TODO}, with a few outliers lasting significantly longer. When a user interacts with a DStat bot to request an attack, the bot typically specifies a duration for the attack, which influences the observed duration. For personal testing attacks however, users can choose any duration they want, leading to a wider distribution of attack durations.
+
+To analyze the protocols used in the attacks, we look for signatures in the reported bandwidth data that indicate whether the attack is using TCP, UDP, or ICMP. Figure~\textbf{TODO} shows the distribution of protocols used in the attacks. We observe that \textbf{TODO} of the attacks use UDP, while \textbf{TODO} use TCP, and \textbf{TODO} use ICMP. This is in line with previous studies on DDoS attacks \textbf{SOME CITES}, which have shown that UDP-based attacks are more common due to their ability to generate high volumes of traffic with minimal effort.
+
+To determine whether the attacks employ IP spoofing, we rely on a separate dataset collected from a network telescope that monitors backscatter traffic as per the method of \textbf{CITE original Caida backscatter paper}. By correlating the timing and IP addresses of the attacks observed on the DStat endpoints with the backscatter data, we can identify whether there is backscatter traffic towards the network telescope. Note that this will provide a strict lower bound on the number of spoofed attacks, as the spoofed attack traffic needs to hit the telescope's monitored IP space to be observed. We rely on a telescope with approximately 65.000 IP addresses, which covers $\approx\frac{1}{2^{16}}$ of the entire IP space. A UDP attack of 1 Gbps with packets of 1440 bytes, which is commonly seen in botnet attacks \textbf{TODO: CITE}, will generate $\approx2^{16}$ packets per second. As each packet has a probability of $\approx\frac{1}{2^{16}}$ to hit the network telescope if the packet source is spoofed randomly over the IPv4 space, we will on average see 1 packet in the network telescope from a 1 Gbps attack. Given the attack durations and sizes shown in the previous paragraphs, it is likely that we therefore do observe any attacks that randomly spoof the source IP address of their packets. From this analysis, we find that only \textbf{TODO: Number and percent} of the attacks show evidence of IP spoofing.
+
+\color{red}CONTINUE HERE\color{black}
+
+\color{red}
+\textbf{TODOS} - 
+Kunnen we iets zeggen over iets van evolutie hier?
+
+Is er iets interessants te zeggen over de aanvallen zelf? 
+
+Zijn er bepaalde patronen te zien in de aanvallen?
+\color{black}
+
+
+\begin{takeawaybox}
+\textbf{Takeaways}
 \begin{itemize}
-    \item How many attacks per day per ...?
-    \item How big are attacks?
-    \item How long do attacks last?
-    \item What protocols do attacks use (tcp/udp/icmp)
-    \item Do attacks use spoofing (backscatter or not?)
+    \item ...
 \end{itemize}
+\end{takeawaybox}
+
+% \begin{itemize}
+%     \item How many attacks per day per ...?
+%     \item How big are attacks?
+%     \item How long do attacks last?
+%     \item What protocols do attacks use (tcp/udp/icmp)
+%     \item Do attacks use spoofing (backscatter or not?)
+% \end{itemize}

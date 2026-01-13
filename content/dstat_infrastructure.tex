@@ -4,32 +4,78 @@
     \centering
     \includegraphics[width=\columnwidth]{figures/dstat_ecosystem.pdf}
     \caption{Visualisation of the Dstat ecosystem.}
+    \label{fig:dstat_ecosystem}
 \end{figure}
 
+As described in Section~\ref{sec:methodology}, DStat services rely on publicly exposed Netdata and Prometheus endpoints to gather data about the current bandwidth usage of their endpoints. Figure~\ref{fig:dstat_ecosystem} visualizes the ecosystem of DStat services. The DStat service operator scrapes publicly exposed Netdata and Prometheus endpoints, which are hosted on infrastructure with large uplinks. These endpoints report their current bandwidth usage to the DStat service, which aggregates this data and displays it on their website. 
+Booter service operators can attack these DStat endpoints to showcase the power of their DDoS-for-Hire networks and provide DDoS Power Proofs to their users.
+Users can then identify the most powerful DDoS-for-Hire services based on the reported bandwidth on the DStat services, and choose a service accordingly.
 
+\subsection{Netdata and Prometheus instances}
+From the five DStat websites we monitor, we identify a total of \textbf{XXX} unique Netdata and Prometheus endpoints that are being abused. These endpoints are hosted on infrastructure with large uplinks, ranging from 1 Gbps to 100 Gbps, and are geographically distributed around the world. From these endpoints, we collect data on the 25 hosts that show 25 Gbps or more of bandwidth usage during our monitoring period. This list is updated twice per week, as new endpoints can appear and old endpoints can disappear.
+
+Censys~\textbf{CITE} shows a total of \textbf{YYY} publicly exposed Netdata endpoints, and \textbf{ZZZ} publicly exposed Prometheus endpoints in the IPv4 address space. We collect the reported uplink capacities of these services, which are self-reported by the Netdata and Prometheus software, to identify the potential hosts that can be abused by DStat services. Figure~\textbf{TODO} shows a CDF of the reported uplink capacities for these endpoints. We observe that most endpoints have uplinks of \textbf{TODO}. As DStat services are typically interested in high-bandwidth endpoints, as they tend to abuse endpoints with uplinks of 1 Gbps or more, the total number of potential endpoints that could be abused in these platforms is \textbf{TODO}.
+
+While Prometheus only allows to scrape the current bandwidth usage, Netdata also exposes historical data. This allows us to reconstruct the bandwidth usage over time for Netdata endpoints, while for Prometheus endpoints we only have point-in-time measurements.
+
+Figure~\textbf{TODO} shows the distribution of uplink capacities for the Netdata and Prometheus endpoints that are abused by DStat services. While we observe that most endpoints have uplinks of 1 Gbps or 10 Gbps, there are also a significant number of endpoints with larger uplinks. The largest uplink we observe is 400 Gbps, hosted within a large ISP ASN. As we will show in Section~\ref{sec:attacks}, these large uplinks are regularly fully saturated during DDoS attacks.
+
+When an endpoint is added to a DStat service, the DStat operator starts scraping the endpoint every second to collect the current bandwidth usage. We can verify this by looking at the reported API statistics of the Netdata and Prometheus endpoints. Additionally, from that moment on, the endpoint starts receiving DDoS attacks from various DDoS-for-Hire services, as we will show in Section~\ref{sec:attacks}. In most cases, these attacks are large enough to temporarily saturate the network links of these devices, and therefore to effectively render the device unreachable for a short duration. For this ecosystem to work, the owner of the endpoint must not notice the attacks happening, as otherwise they could take down the endpoint or secure it behind a firewall. As these endpoints are used on average for \textbf{TODO} days before being removed from the DStat services, it seems that the owners of these endpoints indeed do not notice the attacks happening, or at least do not take action against them. This is especially interesting for the large endpoints, as the cost of such infrastructures is significant.
+
+\color{red}CONTINUE HERE\color{black}
+
+\subsection{Telegram Bots}
+In our Telegram monitoring, we identify a total of 13 different DStat bots that are used to facilitate DStat services. These bots allow users to request attacks on specific endpoints, and report the observed traffic back in Telegram. We observe a total of 7.983 usages of these bots, from a total of 1.010 distinct users. However, the usage of these bots is highly skewed, with only a handful of bots being used frequently. Figure~\ref{fig:top_dstat_bots} shows the top 5 most used DStat bots in our Telegram dataset.
+
+\color{red}CONTINUE HERE\color{black}
+
+\color{red}
+\textbf{TODOS} - 
+Hebben we inzichten over de infrastructuur van de layer 7 dstat services? (waarschijnlijk niet, maar check even).
+
+Kunnen we iets meer zeggen over de geografische spreiding van de dstat endpoints? Zijn er bepaalde regio's die meer gebruikt worden?
+
+Is er iets interessants te zeggen over de ASNs waar deze endpoints gehost worden?
+
+Is er iets interessants te zeggen over de evolutie van de dstat infrastructuur door de tijd heen?
+
+Is de usage van prometheus vs netdata interessant om te vermelden?
+
+Kunnen we iets zeggen over de uptime van dstat endpoints? Hoe lang blijven ze gemiddeld online voordat ze weggehaald worden?
+\color{black}
+
+\begin{takeawaybox}
+\textbf{Takeaways}
 \begin{itemize}
-    \item Netdata and prometheus hosts for L4
-    \item Layer 7 infrastructure is unsure, but difficult to publically scrape
-    \item Hosts with large uplinks
-    \item We scrape 25 dstat hosts
-    \item Update our list once or twice per week
-    \item Observe five known dstat websites
+    \item DStat services abuse publicly exposed Netdata and Prometheus endpoints to gather data about their bandwidth usage. These endpoints are typically hosted on infrastructure with large uplinks, ranging from 1 Gbps to 400 Gbps, and are geographically distributed around the world.
+    \item DStat bots on Telegram facilitate the interaction between users and DStat services, allowing users to request attacks and receive DDoS Power Proofs directly in Telegram.
 \end{itemize}
+\end{takeawaybox}
 
-\noindent
+% \begin{itemize}
+%     \item Netdata and prometheus hosts for L4
+%     \item Layer 7 infrastructure is unsure, but difficult to publically scrape
+%     \item Hosts with large uplinks
+%     \item We scrape 25 dstat hosts
+%     \item Update our list once or twice per week
+%     \item Observe five known dstat websites
+% \end{itemize}
 
-Telegram statistics:
+% \noindent
 
-\begin{itemize}
-    \item Telegram bots exist to facilitate dstat services (leaderboards, ddos test attacks, ...)
-    \item We observe 13 bots in our Telegram database
-    \item We observe 7983 usages of Telegram dstat bots (started with the start command)
-    \item 1010 distinct users use these bots
-    \item Only a handful of bots are used a lot (see figure)
-\end{itemize}
+% Telegram statistics:
+
+% \begin{itemize}
+%     \item Telegram bots exist to facilitate dstat services (leaderboards, ddos test attacks, ...)
+%     \item We observe 13 bots in our Telegram database
+%     \item We observe 7983 usages of Telegram dstat bots (started with the start command)
+%     \item 1010 distinct users use these bots
+%     \item Only a handful of bots are used a lot (see figure)
+% \end{itemize}
 
 \begin{figure}
     \centering
     \includegraphics[width=\columnwidth]{figures/top_dstat_bots.pdf}
     \caption{Top 5 most used Telegram bots offering Dstat capabilities.}
+    \label{fig:top_dstat_bots}
 \end{figure}
