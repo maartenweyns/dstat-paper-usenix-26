@@ -55,6 +55,14 @@
 % to be able to draw some self-contained figs
 \usepackage{tikz}
 \usepackage{amsmath}
+\usepackage[many]{tcolorbox}    	% for COLORED BOXES (tikz and xcolor included)
+\newtcolorbox{takeawaybox}{
+    sharpish corners, % better drop shadow
+    boxrule = 0pt,
+    toprule = 0.5pt, % top rule weight
+    enhanced,
+    fuzzy shadow = {0pt}{-2pt}{-0.5pt}{0.5pt}{black!35} % {xshift}{yshift}{offset}{step}{options} 
+}
 
 % inlined bib file
 \usepackage{filecontents}
@@ -86,10 +94,9 @@
 
 \maketitle
 
-%-------------------------------------------------------------------------------
+
 \begin{abstract}
-%-------------------------------------------------------------------------------
-Abstract goes here...
+DDoS-for-Hire services allow anyone to launch Distributed Denial of Service (DDoS) attacks with the click of a button. To showcase their capabilities, these services often rely on third-party platforms that provide ``DDoS Power Proofs'', where users can see real-time graphs of the traffic generated during an attack. These platforms, known as DStat services, aggregate data from publicly exposed monitoring endpoints to display the current bandwidth usage and uplink capacities of various DDoS-for-Hire services. In this paper, we investigate the infrastructure behind DStat services, analyze the attacks performed on their endpoints, and explore the market dynamics of DDoS Power Proofs on Telegram. Our findings reveal that DStat services abuse publicly exposed monitoring endpoints, allowing them to operate without significant investment in infrastructure. We observe a wide range of attack sizes and characteristics, shedding light on the capabilities of DDoS-for-Hire services. Furthermore, our analysis of Telegram groups uncovers the social dynamics and promotional strategies employed by DDoS-for-Hire providers.
 \end{abstract}
 
 
